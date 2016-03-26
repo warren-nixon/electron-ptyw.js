@@ -1,0 +1,27 @@
+environment:
+  NPM_CONFIG_DISTURL: https://atom.io/download/atom-shell
+  NPM_CONFIG_TARGET: 0.34.5
+  NPM_CONFIG_ARCH: ia32
+  NPM_TARGET_PLATFORM: win32
+  NPM_CONFIG_RUNTIME: electron
+
+platform:
+  - x86
+
+clone_depth: 1
+
+install:
+  - ps: |
+      Install-Product node ''
+      npm -g install npm --loglevel error
+      node --version
+      npm --version
+      npm install ptyw.js@0.3.7 --loglevel error
+      tar -zcvf ptyw.js-0.3.7.tgz node_modules/ptyw.js
+
+artifacts:
+  - path: ptyw.js-0.3.7.tgz
+
+build: off
+
+test: off
